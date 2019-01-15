@@ -1,0 +1,110 @@
+$blue: #0284a8;
+$white: #fff;
+
+header {
+  border-bottom: 1px solid $blue;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9999;
+  background: $white;
+  height: 80px;
+  padding: 0 10% 0 5%;
+  .search {
+    position: relative;
+    margin: 20px auto;
+    max-width: calc(600px - 25px);
+
+    i {
+      right: -25px;
+      top: -6px;
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      display: block;
+      border-radius: 50%;
+      background: $blue;
+      text-align: center;
+      line-height: 50px;
+      color: $white;
+      cursor: pointer;
+      z-index: 99;
+    }
+  }
+}
+
+main {
+  overflow: hidden;
+  padding: 100px 0;
+
+  .giphy-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
+    grid-auto-rows: 1px;
+    grid-gap: 10px;
+
+    @media screen and (max-width: 576px){
+      grid-template-columns: repeat(auto-fill, minmax(95%, 1fr));
+    }
+
+    @media screen and (min-width: 577px) and (max-width: 767px){
+      grid-template-columns: repeat(auto-fill, minmax(45%, 1fr));
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 1199px){
+      grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
+    }
+
+    @media screen and (min-width: 1199px){
+      grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
+    }
+        
+    .giphy-item {
+      min-height: 300px;
+      grid-row-end: span 35;
+
+      img {
+        display: block;
+        width: 100%;
+        transition: all 1s 0.3s;
+      }
+    }
+
+  }
+}
+
+.load {
+  position: relative;
+
+  &:before {
+    content: "";
+    display: block;
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+    margin: 10px;
+    background: $blue;
+    z-index: 998;
+    position: absolute;
+  }
+  &:after {
+    content: "";
+    display: block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 5px solid transparent;
+    border-top-color: $white;
+    border-bottom-color: $white;
+    animation: load 2s infinite linear;
+    z-index: 999;
+    position: absolute;
+    top: calc(50% - 25px);
+    left: calc(50% - 25px);
+  }
+
+  @keyframes load {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
